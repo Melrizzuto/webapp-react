@@ -18,6 +18,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     /* Ombra leggera */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 150px;
 }
 
 .card:hover {
@@ -29,12 +30,16 @@
 
 /* Stile per l'immagine */
 .cardImage {
+    width: 100%;
+    /* Assicurati che l'immagine occupi tutta la larghezza della card */
+    height: 600px;
+    /* Aumenta l'altezza per vedere l'immagine più grande */
+    object-fit: cover;
+    /* Adatta l'immagine per coprire l'intero box */
+    object-position: center;
+    /* Centra l'immagine */
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     /* Bordo tra immagine e contenuto */
-    height: 200px;
-    /* Altezza fissa */
-    object-fit: cover;
-    /* Adatta l'immagine */
 }
 
 /* Stile per il corpo della card */

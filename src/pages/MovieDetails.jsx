@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Form from "./Form"
+import Form from "./Form";
 import axios from 'axios';
 import styles from './MovieDetails.module.css'; // Importa il file CSS
 
 export default function MovieDetails() {
-    const { id } = useParams(); //si usa per recuperare l'id 
+    const { id } = useParams(); // si usa per recuperare l'id
     const [movie, setMovie] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);  // Stato per il caricamento
@@ -51,8 +51,9 @@ export default function MovieDetails() {
             {movie ? (
                 <>
                     <h1 className={styles.title}>{movie.title}</h1>
+                    {/* Definisci l'URL dell'immagine qui, dopo che movie è stato caricato */}
                     <img
-                        src={movie.image}
+                        src={`http://localhost:3000/images/${movie.image}`}
                         alt={movie.title}
                         className={styles.bookImage}
                     />
@@ -77,7 +78,6 @@ export default function MovieDetails() {
             )}
             <Form />
         </div>
-
     );
 };
 

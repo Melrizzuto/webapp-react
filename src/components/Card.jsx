@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
-import styles from "./Card.module.css"; // Importa il file di stile per il modulo
+import styles from "./Card.module.css";
 
 function Card({ movie }) {
+    // url completo dell'immagine
+    const imageUrl = `http://localhost:3000/images/${movie.image}`;
+
     return (
         <div className={`col-md-4 mb-4 ${styles.cardContainer}`}>
             <div className={`card h-100 ${styles.card}`}>
-                {/* Inserisco un'immagine del film, usando l'URL passato dalla prop 'movie'. */}
+                {/* Inserisco l'immagine con il percorso completo */}
                 <img
-                    src={movie.image}
+                    src={imageUrl} // Usa l'URL completo
                     className={`card-img-top ${styles.cardImage}`}
                     alt={movie.title}
                 />
@@ -19,7 +22,6 @@ function Card({ movie }) {
                     <p className={`card-text ${styles.cardAbstract}`}>
                         {movie.abstract}
                     </p>
-                    {/* Link per vedere maggiori dettagli sul film */}
                     <Link to={`/movies/${movie.id}`} className={`btn ${styles.cardButton}`}>
                         See more
                     </Link>

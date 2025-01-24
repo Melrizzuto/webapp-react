@@ -7,6 +7,7 @@ function MoviesList() {
     const [loading, setLoading] = useState(true); // Stato per il caricamento
     const [error, setError] = useState(null); // Stato per errori di fetch
 
+
     // Funzione per recuperare i dati dei film
     function fetchMovies() {
         axios.get("http://localhost:3000/movies")

@@ -4,6 +4,9 @@
     margin: 0 auto;
     background-color: #f4f4f9;
     border-radius: 8px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .title {
