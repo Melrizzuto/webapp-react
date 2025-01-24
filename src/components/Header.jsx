@@ -1,29 +1,51 @@
 import { NavLink } from "react-router-dom";
+import styles from './Header.module.css'; // Importa il modulo CSS
+
 export default function Header() {
   return (
-    <header>
-      <ul className="nav d-flex justify-content-center gap-5  ">
-        <li>
-          <NavLink to="/books" className="myList major-mono-display-regular">
-            Homepage
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/contact" className="myList major-mono-display-regular">
-            Contact us
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/about" className="myList major-mono-display-regular">
-            About
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/form" className="myList major-mono-display-regular">
-            Form
-          </NavLink>
-        </li>
-      </ul>
+    <header className={styles.header}>
+      <nav className={styles.navbar}>
+        <div className="container">
+          <ul className={`nav ${styles.navList}`}>
+            <li>
+              <NavLink
+                to="/"
+                className={`${styles.navLink} ${styles.transition}`}
+                activeClassName={styles.activeLink}
+              >
+                Homepage
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/contact"
+                className={`${styles.navLink} ${styles.transition}`}
+                activeClassName={styles.activeLink}
+              >
+                Contact us
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/about"
+                className={`${styles.navLink} ${styles.transition}`}
+                activeClassName={styles.activeLink}
+              >
+                About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/form"
+                className={`${styles.navLink} ${styles.transition}`}
+                activeClassName={styles.activeLink}
+              >
+                Form
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
   );
 }

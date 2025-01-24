@@ -1,0 +1,49 @@
+/* Impostazioni generali per l'header */
+.header {
+    background-color: #343a40;
+    /* Scuro per un aspetto moderno */
+    padding: 10px 0;
+}
+
+/* Navbar */
+.navbar {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Lista di navigazione */
+.navList {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+/* Link di navigazione */
+.navLink {
+    font-size: 1.1rem;
+    font-family: 'Major Mono Display', monospace;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Effetto hover sui link */
+.navLink:hover {
+    background-color: #007bff;
+    transform: scale(1.1);
+    color: #fff;
+}
+
+/* Link attivo */
+.activeLink {
+    font-weight: bold;
+    color: #ff6347;
+}
+
+/* Transizioni per un effetto fluido */
+.transition {
+    transition: all 0.3s ease;
+}

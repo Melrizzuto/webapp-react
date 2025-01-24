@@ -14,7 +14,6 @@ function App() {
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<HomePage />} />
           <Route path="movies">
-            <Route index element={<HomePage />} />
             <Route path=":id" element={<MovieDetails />} />
           </Route>
           <Route path="form" element={<Form />} />
