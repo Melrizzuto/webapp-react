@@ -55,7 +55,7 @@ export default function MovieDetails() {
                     <img
                         src={`http://localhost:3000/images/${movie.image}`}
                         alt={movie.title}
-                        className={styles.bookImage}
+                        className={styles.movieImage}
                     />
                     <p className={styles.description}>{movie.description}</p>
 

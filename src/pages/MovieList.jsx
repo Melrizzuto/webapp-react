@@ -28,8 +28,6 @@ function MoviesList() {
 
     return (
         <div className="container mt-4">
-            <h1>Bool Movies</h1>
-            <h3>The nerdiest movie community</h3>
 
             {loading ? (
                 <p>Loading Movies...</p> // Mostra un messaggio di caricamento mentre i dati sono in fase di recupero

@@ -7,6 +7,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+
 }
 
 .title {
@@ -16,7 +17,7 @@
     margin-bottom: 15px;
 }
 
-.bookImage {
+.movieImage {
     width: 300px;
     border-radius: 8px;
     margin-bottom: 20px;
