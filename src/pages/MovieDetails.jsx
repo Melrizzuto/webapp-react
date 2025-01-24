@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Form from "./Form";
+import Form from "../components/Form";
 import axios from 'axios';
 import styles from './MovieDetails.module.css'; // Importa il file CSS
 
