@@ -17,7 +17,7 @@ function Card({ movie }) {
                 <div className={`card-body ${styles.cardBody}`}>
                     <h5 className={`card-title ${styles.cardTitle}`}>{movie.title}</h5>
                     <p className={`card-text ${styles.cardAuthor}`}>
-                        <strong>By {movie.author}</strong>
+                        <strong>By {movie.director}</strong>
                     </p>
                     <p className={`card-text ${styles.cardAbstract}`}>
                         {movie.abstract}
