@@ -1,0 +1,87 @@
+/* Stile generale del contenitore della card */
+.cardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+/* Stile della card */
+.card {
+    background-color: rgb(103, 103, 126);
+    /* Colore del main */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    /* Bordo più chiaro */
+    border-radius: 10px;
+    /* Angoli arrotondati */
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Ombra leggera */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    /* Ingrandimento leggero al passaggio del mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    /* Ombra più intensa */
+}
+
+/* Stile per l'immagine */
+.cardImage {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /* Bordo tra immagine e contenuto */
+    height: 200px;
+    /* Altezza fissa */
+    object-fit: cover;
+    /* Adatta l'immagine */
+}
+
+/* Stile per il corpo della card */
+.cardBody {
+    padding: 15px;
+    color: white;
+    /* Testo bianco */
+}
+
+/* Stile per il titolo */
+.cardTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Stile per l'autore */
+.cardAuthor {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    /* Testo leggermente più chiaro */
+}
+
+/* Stile per il testo dell'abstract */
+.cardAbstract {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    /* Testo leggermente più chiaro */
+}
+
+/* Stile per il bottone */
+.cardButton {
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Bottone chiaro */
+    color: rgb(103, 103, 126);
+    /* Colore del main per il testo */
+    border: none;
+    padding: 8px 12px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cardButton:hover {
+    background-color: rgba(255, 255, 255, 1);
+    /* Bottone completamente bianco al passaggio */
+    color: rgb(60, 60, 80);
+    /* Testo leggermente più scuro */
+}

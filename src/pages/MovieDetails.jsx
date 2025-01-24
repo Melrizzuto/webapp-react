@@ -52,7 +52,7 @@ export default function MovieDetails() {
                 <>
                     <h1 className={styles.title}>{movie.title}</h1>
                     <img
-                        src={movie.coverImage}
+                        src={movie.image}
                         alt={movie.title}
                         className={styles.bookImage}
                     />

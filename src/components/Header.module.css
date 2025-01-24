@@ -1,49 +1,56 @@
-/* Impostazioni generali per l'header */
+/* Stile generale dell'header */
 .header {
-    background-color: #343a40;
-    /* Scuro per un aspetto moderno */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(26, 26, 64, 1);
+    /* Blu scuro iniziale */
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Quando l'utente scrolla */
+.headerScrolled {
+    background-color: rgba(26, 26, 64, 0.8);
+    /* Più trasparente */
     padding: 10px 0;
+    /* Riduce il padding */
 }
 
 /* Navbar */
 .navbar {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
 }
 
-/* Lista di navigazione */
-.navList {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 0;
-    list-style: none;
+/* Logo */
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f9f9f9;
+    text-transform: uppercase;
+}
+
+.logo:hover {
+    color: #f2a900;
+    text-decoration: none;
 }
 
 /* Link di navigazione */
-.navLink {
-    font-size: 1.1rem;
-    font-family: 'Major Mono Display', monospace;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+.nav-link {
+    font-size: 1rem;
+    color: #f9f9f9;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
 }
 
-/* Effetto hover sui link */
-.navLink:hover {
-    background-color: #007bff;
-    transform: scale(1.1);
-    color: #fff;
+.nav-link:hover {
+    color: #f2a900;
 }
 
-/* Link attivo */
-.activeLink {
+.nav-link.active {
+    color: #f2a900;
     font-weight: bold;
-    color: #ff6347;
-}
-
-/* Transizioni per un effetto fluido */
-.transition {
-    transition: all 0.3s ease;
 }
