@@ -51,13 +51,14 @@ export default function MovieDetails() {
             {movie ? (
                 <>
                     <h1 className={styles.title}>{movie.title}</h1>
+                    <h6 className='py-2'> By {movie.director}</h6>
                     {/* Definisci l'URL dell'immagine qui, dopo che movie è stato caricato */}
                     <img
                         src={`http://localhost:3000/images/${movie.image}`}
                         alt={movie.title}
                         className={styles.movieImage}
                     />
-                    <p className={styles.description}>{movie.description}</p>
+                    <p className={styles.description}> {movie.abstract}</p>
 
                     <h3 className={styles.reviewsTitle}>Recensioni</h3>
                     {reviews.length > 0 ? (
