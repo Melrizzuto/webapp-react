@@ -11,7 +11,6 @@ export default function Header() {
               <NavLink
                 to="/"
                 className={`${styles.navLink} ${styles.transition}`}
-                activeClassName={styles.activeLink}
               >
                 Homepage
               </NavLink>
@@ -20,7 +19,6 @@ export default function Header() {
               <NavLink
                 to="/contact"
                 className={`${styles.navLink} ${styles.transition}`}
-                activeClassName={styles.activeLink}
               >
                 Contact us
               </NavLink>
@@ -29,20 +27,18 @@ export default function Header() {
               <NavLink
                 to="/about"
                 className={`${styles.navLink} ${styles.transition}`}
-                activeClassName={styles.activeLink}
               >
                 About
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink
                 to="/form"
                 className={`${styles.navLink} ${styles.transition}`}
-                activeClassName={styles.activeLink}
               >
                 Form
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>

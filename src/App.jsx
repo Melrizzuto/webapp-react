@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DefaultLayout from "./layout/DefaultLayout";
 import HomePage from "./pages/Homepage";
 import MovieDetails from "./pages/MovieDetails";
-import Form from "./components/Form";
+import Form from "./pages/Form";
 import ContactUs from "./pages/ContactUs";
 import About from "./pages/About";
 
