@@ -1,31 +1,19 @@
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { MovieContext } from "../context/MovieContext";
 import Form from "../components/Form";
-import axios from 'axios';
-import styles from './MovieDetails.module.css'; // Importa il file CSS
+import styles from './MovieDetails.module.css';
 
-export default function MovieDetails() {
-    const { id } = useParams(); // si usa per recuperare l'id
-    const [movie, setMovie] = useState(null);
-    const [reviews, setReviews] = useState([]);
-    const [loading, setLoading] = useState(true);  // Stato per il caricamento
+function MovieDetails() {
+    const { id } = useParams(); // Si usa per recuperare l'id
+    const { movie, reviews, loading, error, fetchMovieDetails } = useContext(MovieContext);
 
-    // ottengo i dettagli del film e le recensioni dal backend quando il componente è montato
+    // Recupera i dettagli del film e le recensioni quando il componente viene montato
     useEffect(() => {
-        setLoading(true); // Inizia il caricamento
-        axios.get(`http://localhost:3000/movies/${id}`)
-            .then(response => {
-                setMovie(response.data.item);
-                setReviews(response.data.item.reviews || []);  // Fallback se non ci sono recensioni
-                setLoading(false);  // Imposta il caricamento a false quando i dati sono pronti
-            })
-            .catch(error => {
-                console.error('Errore nel recuperare i dettagli del film:', error);
-                setLoading(false);  // In ogni caso, termina il caricamento
-            });
-    }, [id]); // dependences
+        fetchMovieDetails(id); // Chiamata al fetch del contesto
+    }, [id]); // dipendenza
 
-    // fn per renderizzare le stelle
+    // Funzione per rendere le stelle
     function renderStars(rating) {
         const stars = [];
         for (let i = 1; i <= 5; i++) {
@@ -46,24 +34,28 @@ export default function MovieDetails() {
         return <div className="container"><p>Caricamento...</p></div>;
     }
 
+    if (error) {
+        return <div className="container"><p className="text-danger">{error}</p></div>;
+    }
+
     return (
         <div className={styles.movieDetails}>
             {movie ? (
                 <>
                     <h1 className={styles.title}>{movie.title}</h1>
-                    <h6 className='py-2'> By {movie.director}</h6>
-                    {/* Definisci l'URL dell'immagine qui, dopo che movie è stato caricato */}
+                    <h6 className='py-2'>By {movie.director}</h6>
+                    {/* definisco l'URL dell'immagine dopo che movie è stato caricato */}
                     <img
                         src={`http://localhost:3000/images/${movie.image}`}
                         alt={movie.title}
                         className={styles.movieImage}
                     />
-                    <p className={styles.description}> {movie.abstract}</p>
+                    <p className={styles.description}>{movie.abstract}</p>
 
                     <h3 className={styles.reviewsTitle}>Recensioni</h3>
                     {reviews.length > 0 ? (
                         <ul className={styles.reviewsList}>
-                            {reviews.map(review => (
+                            {reviews.map((review) => (
                                 <li key={review.id} className={styles.reviewItem}>
                                     <strong>{review.name}</strong>: {review.text}
                                     - {renderStars(review.vote)}
@@ -83,3 +75,4 @@ export default function MovieDetails() {
 };
 
 
+export default MovieDetails;
