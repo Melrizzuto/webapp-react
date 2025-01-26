@@ -4,45 +4,46 @@
     margin: 0 auto;
     background-color: #f4f4f9;
     border-radius: 8px;
-    align-items: center;
     display: flex;
-    flex-direction: column;
-
-}
-
-
-.title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
+    /* Layout a due colonne */
+    flex-direction: row;
+    gap: 20px;
+    /* Spazio tra le due colonne */
+    align-items: flex-start;
 }
 
 .movieImage {
-    width: 300px;
+    width: 450px;
     border-radius: 8px;
-    margin-bottom: 20px;
     object-fit: cover;
 }
 
-.description {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 20px;
-    text-align: end;
+.movieInfo {
+    flex: 1;
+    /* Si espande per occupare lo spazio disponibile */
 }
 
-
+.reviews {
+    display: flex;
+    flex-direction: column;
+    /* Dispone le recensioni in colonna */
+    flex: 1;
+    /* Permette alle recensioni di occupare spazio */
+    margin-top: 20px;
+    /* Distanza tra la locandina e le recensioni */
+}
 
 .reviewsTitle {
     font-size: 1.5rem;
     color: #333;
-    margin-top: 20px;
+    margin-bottom: 15px;
 }
 
 .reviewsList {
     list-style: none;
     padding: 0;
+    margin-bottom: 20px;
+    /* Distanza tra recensioni e form */
 }
 
 .reviewItem {

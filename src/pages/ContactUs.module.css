@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    padding: 16px;
+}
+
+.title {
+    text-align: center;
+    color: #212529;
+    /* Dark color */
+    margin-bottom: 12px;
+}
+
+.description {
+    text-align: center;
+    color: #6c757d;
+    /* Secondary color */
+    margin-bottom: 24px;
+}
+
+.section {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    color: #212529;
+    margin-bottom: 8px;
+}
+
+.section-content {
+    color: #6c757d;
+}

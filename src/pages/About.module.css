@@ -1,0 +1,23 @@
+/* About.module.css */
+.container {
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.card {
+    padding: 2rem;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.card h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.card p {
+    font-size: 1rem;
+    line-height: 1.5;
+}

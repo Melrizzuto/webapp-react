@@ -52,12 +52,12 @@ export default function Header() {
               </li>
               <li className="nav-item">
                 <NavLink to="/about" className="nav-link">
-                  About
+                  Su di noi
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink to="/contact" className="nav-link">
-                  Contact us
+                  Contatti
                 </NavLink>
               </li>
               {/* <li>
