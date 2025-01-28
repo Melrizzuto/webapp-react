@@ -1,0 +1,65 @@
+.notFoundContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(45deg, #ff6b6b, #f0c27b);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.notFoundContent {
+    transform: scale(1.1);
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.heading {
+    font-size: 120px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    animation: bounce 1s infinite alternate;
+}
+
+.message {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.homeLink {
+    font-size: 18px;
+    text-decoration: none;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.homeLink:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}

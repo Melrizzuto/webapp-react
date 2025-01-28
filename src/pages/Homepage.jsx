@@ -1,9 +1,9 @@
-import MovieList from "../pages/MovieList";
+import MovieList from "../components/MovieComponent";
 
 function HomePage() {
     return (
         <div>
-            <MovieList /> {/*qui mostriamo la lista dei libri */}
+            <MovieList /> {/*qui mostriamo la lista dei film */}
         </div>
     );
 };
