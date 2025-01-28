@@ -7,13 +7,13 @@ function MovieProvider({ children }) {
     const [movies, setMovies] = useState([]); // Stato per la lista dei film
     const [movie, setMovie] = useState(null); // Stato per il singolo film
     const [reviews, setReviews] = useState([]); // Stato per le recensioni
-    const [loading, setLoading] = useState(false); // Stato per il caricamento
+    const [isLoading, setIsLoading] = useState(false); // Stato per il caricamento
     const [error, setError] = useState(null); // Stato per gli errori
 
     // Funzione per recuperare la lista dei film (1° chiamata)
     function fetchMovies() {
-        setLoading(true);
-        setError(null); // Reset degli errori in caso di successo
+        setIsLoading(true); // Attiviamo il loader
+        setError(null); // Reset degli errori
         axios
             .get("http://localhost:3000/movies")
             .then((response) => {
@@ -24,13 +24,13 @@ function MovieProvider({ children }) {
                 setError("Si è verificato un errore nel recupero dei film.");
             })
             .finally(() => {
-                setLoading(false);
+                setIsLoading(false); // Nascondiamo il loader
             });
-    }
+    };
 
     // Funzione per recuperare i dettagli di un singolo film (2° chiamata)
     function fetchMovieDetails(id) {
-        setLoading(true);
+        setIsLoading(true); // Attiviamo il loader
         setError(null); // Reset errore precedente
         axios
             .get(`http://localhost:3000/movies/${id}`)
@@ -43,18 +43,18 @@ function MovieProvider({ children }) {
                 console.error(err);
             })
             .finally(() => {
-                setLoading(false);
+                setIsLoading(false); // Nascondiamo il loader
             });
-    }
+    };
 
     // Funzione per aggiungere una recensione
     function addReview(newReview) {
-        setReviews((prevReviews) => [...prevReviews, newReview]);  // Aggiungo la recensione alla lista
-    }
+        setReviews((prevReviews) => [...prevReviews, newReview]); // Aggiungo la recensione alla lista
+    };
 
     // Effettua il fetch della lista dei film quando il provider viene inizializzato
     useEffect(() => {
-        fetchMovies();  // Chiamata per recuperare i dati dei film
+        fetchMovies(); // Chiamata per recuperare i dati dei film
     }, []); // si imposta l'array vuoto per effetturare il fetch solo una volta al primo montaggio del componente
 
     return (
@@ -63,7 +63,7 @@ function MovieProvider({ children }) {
                 movies,
                 movie,
                 reviews,
-                loading,
+                isLoading,
                 error,
                 fetchMovies,
                 fetchMovieDetails,
@@ -76,3 +76,4 @@ function MovieProvider({ children }) {
 }
 
 export { MovieContext, MovieProvider };
+

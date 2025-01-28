@@ -6,7 +6,7 @@ body {
 
 main {
   width: 100%;
-  min-height: 75vh;
+  min-height: 81vh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
