@@ -2,8 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: linear-gradient(45deg, #ff6b6b, #f0c27b);
+    height: 75vh;
+    background: linear-gradient(45deg, #4f1353, #f0c27b);
     color: white;
     font-family: 'Arial', sans-serif;
     text-align: center;
