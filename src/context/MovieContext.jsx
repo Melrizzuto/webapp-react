@@ -47,6 +47,11 @@ function MovieProvider({ children }) {
             });
     }
 
+    // Funzione per aggiungere una recensione
+    function addReview(newReview) {
+        setReviews((prevReviews) => [...prevReviews, newReview]);  // Aggiungo la recensione alla lista
+    }
+
     // Effettua il fetch della lista dei film quando il provider viene inizializzato
     useEffect(() => {
         fetchMovies();  // Chiamata per recuperare i dati dei film
@@ -62,6 +67,7 @@ function MovieProvider({ children }) {
                 error,
                 fetchMovies,
                 fetchMovieDetails,
+                addReview,
             }}
         >
             {children}
