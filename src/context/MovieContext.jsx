@@ -1,13 +1,14 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
+//creo il contesto
 const MovieContext = createContext();
 
 function MovieProvider({ children }) {
     const [movies, setMovies] = useState([]); // Stato per la lista dei film
     const [movie, setMovie] = useState(null); // Stato per il singolo film
     const [reviews, setReviews] = useState([]); // Stato per le recensioni
-    const [isLoading, setIsLoading] = useState(false); // Stato per il caricamento
+    const [isLoading, setIsLoading] = useState(true); // Stato per il caricamento
     const [error, setError] = useState(null); // Stato per gli errori
 
     // Funzione per recuperare la lista dei film (1° chiamata)
@@ -64,6 +65,7 @@ function MovieProvider({ children }) {
                 movie,
                 reviews,
                 isLoading,
+                setIsLoading,
                 error,
                 fetchMovies,
                 fetchMovieDetails,
@@ -74,6 +76,11 @@ function MovieProvider({ children }) {
         </MovieContext.Provider>
     );
 }
+// Hook per utilizzare il contesto
+function useMovieContext() {
+    const context = useContext(MovieContext);
+    return context;
+}
 
-export { MovieContext, MovieProvider };
+export { useMovieContext, MovieProvider };
 

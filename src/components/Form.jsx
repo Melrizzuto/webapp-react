@@ -1,8 +1,8 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom"; // prendo l'id dalla url
 import styles from "./Form.module.css"; // importo gli stili personalizzati per il form
-import { MovieContext } from "../context/MovieContext"; // uso il contesto per ottenere i dettagli del film
+import { useMovieContext } from "../context/MovieContext"; // uso il contesto per ottenere i dettagli del film
 
 const initialData = {
     name: "",
@@ -11,7 +11,7 @@ const initialData = {
 };
 
 function AddReview() {
-    const { movie, fetchMovieDetails } = useContext(MovieContext); // recupero il film e la funzione per ricaricare i dettagli
+    const { movie, fetchMovieDetails } = useMovieContext(); // recupero il film e la funzione per ricaricare i dettagli
     const [formData, setFormData] = useState(initialData);
     const [isFormValid, setIsFormValid] = useState(false); // stato per controllare se il form è valido
     const [error, setError] = useState(null);
@@ -114,7 +114,7 @@ function AddReview() {
     return (
         <section className="my-4 container">
             <h2>Aggiungi una nuova recensione</h2>
-            <form onSubmit={handleSubmit} className={`needs-validation ${isFormValid ? "was-validated" : ""} noValidate {styles.form}`}>
+            <form onSubmit={handleSubmit} className={`needs-validation ${isFormValid ? "was-validated" : ""} ${styles.form}`} noValidate>
                 <div className={styles.formGroup}>
                     <label htmlFor="name">nome:</label>
                     <input

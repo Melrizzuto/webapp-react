@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
-import { MovieContext } from "../context/MovieContext";
+import { useEffect } from 'react';
+import { useMovieContext } from "../context/MovieContext";
 import Form from "../components/Form";
 import styles from './MovieDetails.module.css';
 import Loader from "../components/Loader";
 
 function MovieDetails() {
     const { id } = useParams(); // Parametro id dalla URL
-    const { movie, reviews, loading, error, fetchMovieDetails } = useContext(MovieContext);
+    const { movie, reviews, loading, error, fetchMovieDetails } = useMovieContext();
 
     useEffect(() => {
         fetchMovieDetails(id); // Carica i dettagli del film
