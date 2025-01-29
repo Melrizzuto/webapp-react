@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom"; // aggiungo useParams per ottenere l'ID dalla URL
-import styles from "./Form.module.css"; // stili personalizzati per il form
-import { MovieContext } from "../context/MovieContext"; // importo il contesto
+import { useParams } from "react-router-dom"; // prendo l'id dalla url
+import styles from "./Form.module.css"; // importo gli stili personalizzati per il form
+import { MovieContext } from "../context/MovieContext"; // uso il contesto per ottenere i dettagli del film
 
 const initialData = {
     name: "",
@@ -11,46 +11,49 @@ const initialData = {
 };
 
 function AddReview() {
-    const { movie, fetchMovieDetails } = useContext(MovieContext); // uso il contesto per recuperare il film e la funzione per ricaricare i dettagli
+    const { movie, fetchMovieDetails } = useContext(MovieContext); // recupero il film e la funzione per ricaricare i dettagli
     const [formData, setFormData] = useState(initialData);
+    const [isFormValid, setIsFormValid] = useState(false); // stato per controllare se il form è valido
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false); // stato per gestire l'invio
-    const { id } = useParams(); // prendo l'ID del film dalla URL
+    const { id } = useParams(); // prendo l'id del film dalla url
 
     if (!movie || !id) {
         return <p className="text-danger">errore: nessun film selezionato.</p>; // controllo se il film è disponibile
     }
 
-    // URL base dell'API e endpoint dinamico
+    // imposto l'url base dell'api e l'endpoint dinamico per le recensioni
     const apiUrl = import.meta.env.VITE_API_URL;
-    const apiEndpoint = `${apiUrl}/movies/${id}/reviews`; // imposta l'endpoint per le recensioni
+    const apiEndpoint = `${apiUrl}/movies/${id}/reviews`;
 
-    // gestione dei cambiamenti nei campi del form
+    // funzione per aggiornare i dati del form quando l'utente digita nei campi di input
     function handleChange(e) {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value }); // aggiorno i dati del form
+        setFormData({ ...formData, [name]: value });
     }
 
-    // gestione delle stelle per la valutazione
+    // funzione per aggiornare la valutazione in base al numero di stelle cliccato
     function handleRatingChange(rating) {
-        setFormData({ ...formData, vote: rating }); // aggiorno la valutazione
+        setFormData({ ...formData, vote: rating });
     }
 
-    // funzione di validazione del form
+    // funzione per validare il form prima dell'invio
     function validateForm() {
         if (!formData.name || !formData.text || formData.vote < 1 || formData.vote > 5) {
-            setError("tutti i campi sono obbligatori e la valutazione deve essere tra 1 e 5."); // errore se manca qualcosa nel form
+            setError("tutti i campi sono obbligatori e la valutazione deve essere tra 1 e 5.");
+            setIsFormValid(false); // imposto il form come non valido
             return false;
         }
+        setIsFormValid(true); // imposto il form come valido
         return true;
     }
 
-    // gestione dell'invio del form
+    // funzione per gestire l'invio del form
     function handleSubmit(e) {
         e.preventDefault();
         setError(null); // resetto eventuali errori
-        setSuccess(null); // resetto eventuali successi
+        setSuccess(null); // resetto eventuali messaggi di successo
         setIsSubmitting(true); // disabilito il pulsante mentre invio la recensione
 
         if (!id) {
@@ -64,7 +67,11 @@ function AddReview() {
             return;
         }
 
-        const reviewData = { ...formData, movie_id: id }; // aggiungo l'ID del film ai dati della recensione
+        const reviewData = { ...formData, movie_id: id }; // aggiungo l'id del film ai dati della recensione
+
+        if (!e.target.checkValidity()) {
+            return;
+        }
 
         // invio la recensione al server
         axios
@@ -73,20 +80,21 @@ function AddReview() {
                 console.log("recensione creata:", response.data);
                 setSuccess("recensione aggiunta con successo!");
                 setFormData(initialData); // resetto il form
+                setIsFormValid(false); // imposto il form come non valido
 
-                // ricarico le recensioni del film dopo aver aggiunto la nuova
-                fetchMovieDetails(id); // ricarico i dettagli e le recensioni del film
+                // ricarico i dettagli del film e le recensioni
+                fetchMovieDetails(id);
             })
             .catch((err) => {
                 console.error("errore durante il salvataggio della recensione:", err);
                 setError("si è verificato un errore durante l'invio. riprova.");
             })
             .finally(() => {
-                setIsSubmitting(false); // riabilito il pulsante dopo il completamento dell'invio
+                setIsSubmitting(false); // riabilito il pulsante dopo l'invio
             });
     }
 
-    // render delle stelle per la valutazione
+    // funzione per visualizzare le stelle per la valutazione
     const renderStars = () => {
         const stars = [];
         for (let i = 1; i <= 5; i++) {
@@ -94,7 +102,7 @@ function AddReview() {
                 <span
                     key={i}
                     className={i <= formData.vote ? styles.filledStar : styles.emptyStar} // controllo se la stella è piena o vuota
-                    onClick={() => handleRatingChange(i)} // gestisco il click per cambiare la valutazione
+                    onClick={() => handleRatingChange(i)} // aggiorno la valutazione cliccando sulle stelle
                 >
                     &#9733;
                 </span>
@@ -105,8 +113,8 @@ function AddReview() {
 
     return (
         <section className="my-4 container">
-            <h2>aggiungi nuova recensione</h2>
-            <form onSubmit={handleSubmit} className={styles.form}>
+            <h2>Aggiungi una nuova recensione</h2>
+            <form onSubmit={handleSubmit} className={`needs-validation ${isFormValid ? "was-validated" : ""} noValidate {styles.form}`}>
                 <div className={styles.formGroup}>
                     <label htmlFor="name">nome:</label>
                     <input
@@ -117,6 +125,7 @@ function AddReview() {
                         onChange={handleChange}
                         placeholder="inserisci il tuo nome"
                         className="form-control"
+                        required
                     />
                 </div>
 
@@ -129,6 +138,7 @@ function AddReview() {
                         onChange={handleChange}
                         placeholder="scrivi la tua recensione qui..."
                         className="form-control"
+                        required
                     />
                 </div>
 
